@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { useState, useEffect } from "react";
+import "./App.css";
+// import { Draw } from "./components/draw";
+import { checkDevtoolsHeath } from "./chrome";
+import { orderMock } from "./mock";
+let count: 1 | 2 | 3 = 1;
 function App() {
+  const [status, setStatus] = useState(false);
+  const [content, setContent] = useState("暂无数据");
+  const devtools = checkDevtoolsHeath();
+  const start = () => {
+    setStatus(true);
+  };
+  const end = () => {
+    setStatus(false);
+    setContent("正在加载数据");
+    setTimeout(() => {
+      if (count > 3) count = 1;
+      const d = orderMock(count, false);
+      ++count;
+      devtools.notice(JSON.stringify(d));
+      setContent("正在解析数据");
+      setContent(JSON.stringify(d, null, 2));
+    }, 3000);
+  };
+  useEffect(() => {
+    if (devtools) {
+      const { target } = devtools.getStatic();
+      devtools.addEvent(target.s, start);
+      devtools.addEvent(target.e, end);
+    }
+    return () => {
+      if (devtools) {
+        const { target } = devtools.getStatic();
+        devtools.removeEvent(target.s, start);
+        devtools.removeEvent(target.e, end);
+      }
+    };
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {status ? "开始录制" : "结束录制"}
+      <div>{/* <Draw></Draw> */}</div>
+      <div>echo:</div>
+      <pre>{content}</pre>
     </div>
   );
 }
