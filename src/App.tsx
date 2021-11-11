@@ -21,7 +21,7 @@ function App() {
       devtools.notice(JSON.stringify(d));
       setContent("正在解析数据");
       setContent(JSON.stringify(d, null, 2));
-    }, 3000);
+    }, 500);
   };
   useEffect(() => {
     if (devtools) {
@@ -39,7 +39,9 @@ function App() {
   });
   return (
     <div className="App">
-      {status ? "开始录制" : "结束录制"}
+      <h1 style={{ color: status ? "red" : "green" }}>
+        {status ? "开始录制" : "结束录制"}
+      </h1>
       <div>{/* <Draw></Draw> */}</div>
       <div>echo:</div>
       <pre>{content}</pre>
