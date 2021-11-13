@@ -59,7 +59,7 @@ export const dsMock1 = (): QueryResponse[] => {
             {
               ruleDefId: "0bv4s9i4e5mr1",
               variables: {
-                k: "$current.project.id: PROJECT002",
+                k: "$current.project.id: PROJECT003",
               },
               result: {
                 type: "props",
@@ -89,7 +89,7 @@ export const dsMock1 = (): QueryResponse[] => {
             {
               ruleDefId: "0bv4s9i4e5mr1",
               variables: {
-                k: "$current.project.id: PROJECT002",
+                k: "$current.project.id: PROJECT003",
               },
               result: {
                 type: "props",

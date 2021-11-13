@@ -1,6 +1,2 @@
-export const checkDevtoolsHeath = (): any => {
-  if (window.__EAC_DEV_TOOLS__) {
-    return window.__EAC_DEV_TOOLS__;
-  }
-  return null;
-};
+export const checkDevtoolsHeath = (): any =>
+  window.__EAC_DEV_TOOLS__ ? window.__EAC_DEV_TOOLS__ : null;
