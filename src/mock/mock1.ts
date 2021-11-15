@@ -129,6 +129,46 @@ export const dsMock1 = (): QueryResponse[] => {
             },
           ],
         },
+        {
+          dependent: "Gas",
+          target: "Liquid",
+          weight: 1,
+          effect: [
+            {
+              ruleDefId: "el5ka2kpw1ww",
+              variables: {
+                k: "$current.project.id: PROJECT001",
+              },
+              result: {
+                type: "value",
+                oldValue: null,
+                newValue: null,
+              },
+            },
+            {
+              ruleDefId: "0bv4s9i4e5mr",
+              variables: {
+                k: "$current.project.id: PROJECT002",
+              },
+              result: {
+                type: "props",
+                oldValue: null,
+                newValue: null,
+              },
+            },
+            {
+              ruleDefId: "0bv4s9i4e5mr1",
+              variables: {
+                k: "$current.project.id: PROJECT003",
+              },
+              result: {
+                type: "props",
+                oldValue: null,
+                newValue: null,
+              },
+            },
+          ],
+        },
       ],
       ruleDefs: {
         el5ka2kpw1ww: {
