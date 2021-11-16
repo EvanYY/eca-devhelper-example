@@ -16,12 +16,12 @@ if (!devtools) return;
 const { target } = devtools.getStatic();
 const start = () => console.log("start 接口");
 const end = () => console.log("end 接口");
-devtools.addEvent(target.s, start);
-devtools.addEvent(target.e, end);
+devtools.addEvent(target.start, start);
+devtools.addEvent(target.stop, end);
 // 销毁时
 const { target } = devtools.getStatic();
-devtools.removeEvent(target.s, start);
-devtools.removeEvent(target.e, end);
+devtools.removeEvent(target.start, start);
+devtools.removeEvent(target.stop, end);
 ```
 
-- [window.__EAC_DEV_TOOLS__].notice(只有一个参数) 接口 对 postMessage 方法进行了包裹，只需将 处理好的 string 传入，若成功则会在 panel 控制台 输出 ðŸš€ ~ file: devtools.js ~ line 56 ~ port.onMessage.addListener ~ message > [Object]
+- [window.__EAC_DEV_TOOLS__].emit(arg1: 发送的消息通知，arg2： 发送的行为 默认 emit 详情看 getStatic action 枚举) 接口 对 postMessage 方法进行了包裹，只需将 处理好的 string 传入，若成功则会在 panel 控制台 输出 ðŸš€ ~ file: devtools.js ~ line 56 ~ port.onMessage.addListener ~ message > [Object]
