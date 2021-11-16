@@ -23,7 +23,11 @@ export const useStartStopEmit = () => {
       setContent("正在解析数据");
       setContent(JSON.stringify(d, null, 2));
       // 接收到 结束指令后解析向devtools 发送 消息
-      devtools.emit(JSON.stringify(d));
+      if (devtools) {
+        devtools.emit(JSON.stringify(d));
+      } else {
+        // 通知自己 文本作用域
+      }
     }, 500);
   };
   // 全局订阅 开始结束接口
