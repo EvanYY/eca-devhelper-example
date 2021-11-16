@@ -15,10 +15,6 @@ export const useDevtoolsActive = () => {
   useEffect(() => {
     if (devtools) {
       const { target } = devtools.getStatic();
-      console.log(
-        "🚀 ~ file: isDevtoolsActive.ts ~ line 18 ~ useEffect ~ target",
-        target
-      );
       devtools.addEvent(target.active, changeActive);
     }
     return () => {

@@ -11,7 +11,8 @@ function App() {
         {status ? "开始录制" : "结束录制"}
       </h1>
       <h3>
-        <span>{active.status ? "面板开始" : "面板关闭"}</span>
+        devtools
+        <span style={{ color: "red" }}>{active.status ? "打开" : "关闭"}</span>
       </h3>
       <div>{/* <Draw></Draw> */}</div>
       <div>echo:</div>
