@@ -2,9 +2,11 @@ import "./App.css";
 // import { Draw } from "./components/draw";
 import { useStartStopEmit } from "./hooks/startStopEmit";
 import { useDevtoolsActive } from "./hooks/isDevtoolsActive";
+import { useAbortRequest } from "./hooks/abortRequest";
 function App() {
   const { status, content } = useStartStopEmit();
   const active = useDevtoolsActive();
+  useAbortRequest();
   return (
     <div className="App">
       <h1 style={{ color: status ? "red" : "green" }}>
