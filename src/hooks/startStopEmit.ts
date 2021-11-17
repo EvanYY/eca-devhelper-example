@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { checkDevtoolsHeath } from "../chrome";
 import { orderMock } from "../mock";
+import { dsMockDic1 } from "../mock/mock1";
 let count: 1 | 2 | 3 = 1;
 
 export const useStartStopEmit = () => {
@@ -24,7 +25,9 @@ export const useStartStopEmit = () => {
       setContent(JSON.stringify(d, null, 2));
       // 接收到 结束指令后解析向devtools 发送 消息
       if (devtools) {
-        devtools.emit(JSON.stringify(d));
+        const { action } = devtools.getStatic();
+        devtools.emit(JSON.stringify(d), action.emit);
+        devtools.emit(JSON.stringify(dsMockDic1()), action.emitDic);
       } else {
         // 通知自己 文本作用域
       }
