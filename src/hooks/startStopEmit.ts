@@ -19,7 +19,7 @@ export const useStartStopEmit = () => {
     setContent("正在加载数据");
     // 开始解析数据向devtools 发送 解析好的字符串
     setTimeout(() => {
-      if (count > 3) count = 2;
+      if (count > 2) return;
       const d = orderMock(count, false);
       ++count;
       setContent("正在解析数据");
