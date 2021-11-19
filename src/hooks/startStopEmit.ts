@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { checkDevtoolsHeath } from "../chrome";
 import { orderMock } from "../mock";
 import { dsMockDic1 } from "../mock/mock1";
+import { dsMockDic2 } from "../mock/mock2";
 let count: 1 | 2 | 3 = 1;
 
 export const useStartStopEmit = () => {
@@ -18,7 +19,7 @@ export const useStartStopEmit = () => {
     setContent("正在加载数据");
     // 开始解析数据向devtools 发送 解析好的字符串
     setTimeout(() => {
-      if (count > 3) count = 1;
+      if (count > 3) count = 2;
       const d = orderMock(count, false);
       ++count;
       setContent("正在解析数据");
@@ -26,8 +27,9 @@ export const useStartStopEmit = () => {
       // 接收到 结束指令后解析向devtools 发送 消息
       if (devtools) {
         const { action } = devtools.getStatic();
-        devtools.emit(JSON.stringify(d), action.emit);
         devtools.emit(JSON.stringify(dsMockDic1()), action.emitDic);
+        devtools.emit(JSON.stringify(dsMockDic2()), action.emitDic);
+        devtools.emit(JSON.stringify(d), action.emit);
       } else {
         // 通知自己 文本作用域
       }
