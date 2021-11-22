@@ -21,5 +21,5 @@ export const useAbortRequest = () => {
         devtools.removeEvent(target.abort, change);
       }
     };
-  }, []);
+  });
 };
