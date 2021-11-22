@@ -21,7 +21,6 @@ export const useStartStopEmit = () => {
     setTimeout(() => {
       if (count > 2) return;
       const d = orderMock(count, false);
-      ++count;
       setContent("正在解析数据");
       setContent(JSON.stringify(d, null, 2));
       // 接收到 结束指令后解析向devtools 发送 消息
@@ -30,6 +29,14 @@ export const useStartStopEmit = () => {
         devtools.emit(JSON.stringify(dsMockDic1()), action.emitDic);
         devtools.emit(JSON.stringify(dsMockDic2()), action.emitDic);
         devtools.emit(JSON.stringify(d), action.emit);
+        // devtools.emit(
+        //   JSON.stringify(d),
+        //   count === 1 ? action.emitWait : action.emitResolve
+        // );
+        // ++count;
+        // setTimeout(() => {
+        //   end();
+        // }, 2000);
       } else {
         // 通知自己 文本作用域
       }
